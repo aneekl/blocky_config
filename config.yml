@@ -1,0 +1,76 @@
+upstream:
+  default:
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+    - https://dns11.quad9.net/dns-query
+    - https://dns.nextdns.io
+
+blocking:
+  refreshPeriod: 24h
+  blackLists:
+    ads:
+      - https://raw.githubusercontent.com/badmojr/1Hosts/master/Lite/domains.txt
+#      - https://small.oisd.nl/domains
+#      - https://hosts.tweedge.net/malicious.txt
+#      - https://blocklistproject.github.io/Lists/scam.txt
+#      - https://blocklistproject.github.io/Lists/ransomware.txt
+#      - https://blocklistproject.github.io/Lists/malware.txt
+  clientGroupsBlock:
+    default:
+      - ads
+#  startStrategy: fast
+  downloadTimeout: 60
+  downloadAttempts: 5
+  downloadCooldown: 5s
+
+redis:
+  address: redis:6379
+#  password: passwd
+  database: 2
+  required: true
+  connectionAttempts: 10
+  connectionCooldown: 3s
+
+#queryLog:
+#  type: csv
+#  target: /logs
+#  logRetentionDays: 7
+
+port: 53
+#httpPort: 4000
+logPrivacy: false
+bootstrapDns: tcp+udp:1.1.1.1
+
+customDNS:
+  customTTL: 1h
+  filterUnmappedTypes: true
+  #rewrite:
+  #  home: lan
+  #  replace-me.com: with-this.com
+  mapping:
+    xxxx.xxxx.com: 192.168.1.15
+
+conditional:
+  fallbackUpstream: false
+  #rewrite:
+  #  example.com: fritz.box
+  #  replace-me.com: with-this.com
+  mapping:
+    youtube.com: 115.178.58.26,115.178.58.10
+    google.com: 115.178.58.26,115.178.58.10
+    netflix.com: 115.178.58.26,115.178.58.10
+    google.co.th: 115.178.58.26,115.178.58.10
+    facebook.com: 115.178.58.26,115.178.58.10
+    tiktok.com: 115.178.58.26,115.178.58.10
+
+caching:
+  minTime: 5m
+  maxTime: 24h
+  prefetching: true
+
+ede:
+  enable: true
+
+filtering:
+  queryTypes:
+    - AAAA
