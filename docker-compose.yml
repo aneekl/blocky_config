@@ -5,23 +5,23 @@ services:
     extends:
       file: common.yml
       service: dns
-    container_name: blocky1
+#     container_name: blocky1
     
   dns2:
     extends:
       file: common.yml
       service: dns
-    container_name: blocky2
+#     container_name: blocky2
 
   dns3:
     extends:
       file: common.yml
       service: dns
-    container_name: blocky3
+#     container_name: blocky3
 
   redis:
     image: redis:alpine
-    container_name: blocky_redis
+#     container_name: blocky_redis
     environment:
       - TZ=Asia/Bangkok
     restart: always
@@ -30,7 +30,7 @@ services:
 
   nginx:
     image: nginx:alpine
-    container_name: blocky_balancer
+#     container_name: blocky_balancer
     restart: unless-stopped
     # network_mode: host
     ports:
@@ -44,5 +44,6 @@ services:
       - dns1
       - dns2
       - dns3
+
 volumes:
   redis:
