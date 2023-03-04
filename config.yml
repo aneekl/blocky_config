@@ -31,13 +31,8 @@ redis:
   connectionAttempts: 10
   connectionCooldown: 3s
 
-#queryLog:
-#  type: csv
-#  target: /logs
-#  logRetentionDays: 7
-
 port: 53
-#httpPort: 4000
+httpPort: 4000
 logPrivacy: false
 bootstrapDns: tcp+udp:1.1.1.1
 
@@ -56,6 +51,7 @@ conditional:
   #  example.com: fritz.box
   #  replace-me.com: with-this.com
   mapping:
+    # ISP DNS
     youtube.com: 115.178.58.26,115.178.58.10
     google.com: 115.178.58.26,115.178.58.10
     netflix.com: 115.178.58.26,115.178.58.10
