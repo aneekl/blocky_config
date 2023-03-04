@@ -12,3 +12,5 @@ services:
       - TZ=Asia/Bangkok
     volumes:
       - ./config.yml:/app/config.yml
+    depends_on:
+      - redis
