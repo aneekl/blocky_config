@@ -1,30 +1,23 @@
 version: "3"
+name: blocky
 services:
   dns1:
-    image: ghcr.io/0xerr0r/blocky
+    extends:
+      file: common.yml
+      service: dns
     container_name: blocky1
-    restart: unless-stopped
-    ports:
-      - "127.0.0.1:5342:53/tcp"
-      - "127.0.0.1:5342:53/udp"
-      - "4000:4000/tcp"
-    environment:
-      - TZ=Asia/Bangkok
-    volumes:
-      - ./config.yml:/app/config.yml
-
+    
   dns2:
-    image: ghcr.io/0xerr0r/blocky
+    extends:
+      file: common.yml
+      service: dns
     container_name: blocky2
-    restart: unless-stopped
-    ports:
-      - "127.0.0.1:5343:53/tcp"
-      - "127.0.0.1:5343:53/udp"
-      - "4001:4000/tcp"
-    environment:
-      - TZ=Asia/Bangkok
-    volumes:
-      - ./config.yml:/app/config.yml
+
+  dns3:
+    extends:
+      file: common.yml
+      service: dns
+    container_name: blocky3
 
   redis:
     image: redis:alpine
@@ -32,16 +25,21 @@ services:
     environment:
       - TZ=Asia/Bangkok
     restart: always
+    volumes:
+      - redis:/data
 
   nginx:
     image: nginx:alpine
     container_name: blocky_balancer
     restart: unless-stopped
-    network_mode: host
-    #ports:
-    #  - 53:53/tcp
-    #  - 53:53/udp
+    # network_mode: host
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     environment:
       - TZ=Asia/Bangkok
+
+volumes:
+  redis:
