@@ -40,6 +40,9 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
     environment:
       - TZ=Asia/Bangkok
-
+    depends_on:
+      - dns1
+      - dns2
+      - dns3
 volumes:
   redis:
