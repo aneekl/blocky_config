@@ -5,23 +5,19 @@ services:
     extends:
       file: common.yml
       service: dns
-#     container_name: blocky1
     
   dns2:
     extends:
       file: common.yml
       service: dns
-#     container_name: blocky2
 
   dns3:
     extends:
       file: common.yml
       service: dns
-#     container_name: blocky3
 
   redis:
     image: redis:alpine
-#     container_name: blocky_redis
     environment:
       - TZ=Asia/Bangkok
     restart: always
@@ -40,10 +36,6 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
     environment:
       - TZ=Asia/Bangkok
-    depends_on:
-      - dns1
-      - dns2
-      - dns3
 
 volumes:
   redis:
