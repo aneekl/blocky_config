@@ -26,9 +26,7 @@ services:
 
   nginx:
     image: nginx:alpine
-#     container_name: blocky_balancer
     restart: unless-stopped
-    # network_mode: host
     ports:
       - 53:53/tcp
       - 53:53/udp
