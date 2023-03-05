@@ -2,7 +2,6 @@ version: "3"
 services:
   dns:
     image: ghcr.io/0xerr0r/blocky
-    # container_name: blocky1
     restart: unless-stopped
     # ports:
     #   - "127.0.0.1:5342:53/tcp"
