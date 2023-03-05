@@ -10,18 +10,11 @@ blocking:
   blackLists:
     ads:
       - https://raw.githubusercontent.com/badmojr/1Hosts/master/Lite/domains.txt
-#      - https://small.oisd.nl/domains
-#      - https://hosts.tweedge.net/malicious.txt
-#      - https://blocklistproject.github.io/Lists/scam.txt
-#      - https://blocklistproject.github.io/Lists/ransomware.txt
-#      - https://blocklistproject.github.io/Lists/malware.txt
+#      - https://big.oisd.nl/domains
   clientGroupsBlock:
     default:
       - ads
 #  startStrategy: fast
-  downloadTimeout: 60
-  downloadAttempts: 5
-  downloadCooldown: 5s
 
 redis:
   address: redis:6379
@@ -39,25 +32,20 @@ bootstrapDns: tcp+udp:1.1.1.1
 customDNS:
   customTTL: 1h
   filterUnmappedTypes: true
-  #rewrite:
-  #  home: lan
-  #  replace-me.com: with-this.com
   mapping:
     xxxx.xxxx.com: 192.168.1.15
 
 conditional:
   fallbackUpstream: false
-  #rewrite:
-  #  example.com: fritz.box
-  #  replace-me.com: with-this.com
   mapping:
     # ISP DNS
-    youtube.com: 115.178.58.26,115.178.58.10
-    google.com: 115.178.58.26,115.178.58.10
-    netflix.com: 115.178.58.26,115.178.58.10
-    google.co.th: 115.178.58.26,115.178.58.10
     facebook.com: 115.178.58.26,115.178.58.10
+    google.com: 115.178.58.26,115.178.58.10
+    google.co.th: 115.178.58.26,115.178.58.10
+    googlevideo.com: 115.178.58.26,115.178.58.10
+    netflix.com: 115.178.58.26,115.178.58.10
     tiktok.com: 115.178.58.26,115.178.58.10
+    youtube.com: 115.178.58.26,115.178.58.10
 
 caching:
   minTime: 5m
